@@ -37,6 +37,12 @@ void Msgctl(int msgid, int cmd, struct msqid_ds *buf)
     }
 }
 
+void Msgsnd(int msgid, const void *ptr, size_t len, int flag)
+{
+    if (msgsnd(msgid, ptr, len, flag) == -1) {
+        err_sys("msgsnd error");
+    }
+}
 #endif  /* HAVE_SYS_MSG_H */
 
 void Write(int fd, void *ptr, size_t nbytes)
